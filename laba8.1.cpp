@@ -3,10 +3,8 @@
 
 #include <iostream>
 #include <fstream>
-#define N 2000
-#define N_WORDS 3000    // количество столбцов
-#define SYMBS 33     // количество русских букв по алфавиту
-
+#define N_WORDS 3000  
+#define SYMBS 33   
 int main()
 {
     setlocale(LC_ALL,"Russian");
@@ -40,7 +38,7 @@ int main()
             words[k][i] = buff[i];  // запоминаем слово
         k++;
 
-        for (int i = 0; i < 100; i++)  // очищаем буфер, чтобы записать новое слово
+        for (int i = 0; i < 100; i++)  // очищаем буфер
             buff[i] = 0;
     }
 
@@ -50,12 +48,12 @@ int main()
         symbs[i] = 0;
 
 
-    for (int i = 0; i < count_of_words; i++)    // пока И меньше количества слов
+    for (int i = 0; i < count_of_words; i++) 
     {
-        for (int j = 0; j < 100; j++)              //   j  меньше максимального размера слова
+        for (int j = 0; j < 100; j++)    
         {
             if (words[i][j] >= 'А' && words[i][j] <= 'Я')     // меняем регистр
-                words[i][j] += 'а' - 'А';                // делаем все буквы строчными
+                words[i][j] += 'а' - 'А';              
         }
     }
 
@@ -70,26 +68,26 @@ int main()
 
     int max_symb = 0;  // самый часто встречающийся символ
      
-    for (int i = 0; i < count_of_words; i++)     // пока меньше количества слов  // проходим по каждому слову
+    for (int i = 0; i < count_of_words; i++)  
     {
-        for (int j = 0; j < 100; j++)   //пока меньше 100 (максимальная длина одного слова)  // проходим по каждой букве
+        for (int j = 0; j < 100; j++)   
         {
-            if (words[i][j] >= 'а' && words[i][j] <= 'я') {    // если буква в дипазоне от а до я строчных
-                symbs[(int)words[i][j] + 32]++;    //  то к ее соответствующему нолику (количеству таких букв) мы прибавляем 1
-            }                     // мы взяли букву и принудительно дали ей тип инт, затем прибавили 32, чтобы привести ее к диапазону от 0 до 32 (т.е. 33 символа)
+            if (words[i][j] >= 'а' && words[i][j] <= 'я') {    
+                symbs[(int)words[i][j] + 32]++;   
+            }                    
         }
 
-        for (int m = 0; m < SYMBS; m++)  // обрабатываем таблицу с количеством каждого символа в слове
+        for (int m = 0; m < SYMBS; m++)  
         {
             if (symbs[m] > max_symb)    // ищем максимальное количество повторений одной буквы
             {
                 max_symb = symbs[m];   // записываем эту букву
-                max_symb_in_word[i] = m - 32;    // записываем саму букву         // номер буквы в таблице, переводим обратно в -32 для чара
+                max_symb_in_word[i] = m - 32;    
                 count_mas_symb[i] = max_symb;   // записываем количество повторений этой буквы
 
             }
         }
-        for (int i = 0; i < SYMBS; i++)   // очищаем массив повторов для следующего слова
+        for (int i = 0; i < SYMBS; i++)   
             symbs[i] = 0;
 
         max_symb = 0;
@@ -103,9 +101,9 @@ int main()
         
 
         int tmp = 0;
-    for (int i = 0; i < count_of_words - 1; i++)    // отвечает за номер строки
+    for (int i = 0; i < count_of_words - 1; i++)
     {
-        for (int j = i + 1; j < count_of_words; j++) {       // отвечает за следующий элемент
+        for (int j = i + 1; j < count_of_words; j++) {       
             if (count_mas_symb[i] < count_mas_symb[j]) {
                 tmp = max_symb_in_word[i];             // меняем саму букву
                 max_symb_in_word[i] = max_symb_in_word[j];
@@ -121,7 +119,7 @@ int main()
                     words[j][k] = stock[i];
                 }
             }
-        }           // в итоге вопрос, почему мы вообще записываем каждое слово как двухмерный массив
+        }          
     }
 
 
