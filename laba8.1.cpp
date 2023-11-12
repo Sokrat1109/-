@@ -102,11 +102,11 @@ int main()
         stock[i] = 0;
         
 
-    int tmp = 0;
+        int tmp = 0;
     for (int i = 0; i < count_of_words - 1; i++)    // отвечает за номер строки
     {
         for (int j = i + 1; j < count_of_words; j++) {       // отвечает за следующий элемент
-            if (max_symb_in_word[i] > max_symb_in_word[j]) {
+            if (count_mas_symb[i] < count_mas_symb[j]) {
                 tmp = max_symb_in_word[i];             // меняем саму букву
                 max_symb_in_word[i] = max_symb_in_word[j];
                 max_symb_in_word[j] = tmp;
