@@ -1,5 +1,3 @@
-﻿
-
 #include <iostream>
 #include <fstream>
 #define N 3000
@@ -47,7 +45,7 @@ int main()
     int kol = 0;   // количество букв в слове
     bool flag = false;
 
-    for (int i = 0; i < k; i++)
+    for (int i = 0; i < k; i++)   // ищем палиндромы
     {
         for (int j = 0; words[i][j]!=0; j++)
         {
@@ -146,6 +144,71 @@ int main()
         }
     }
 
+    if (flag == true)
+    {
+        for (int i = 0; i < k; i++)
+        {
+            for (int j = 0; words[i][j] != 0; j++)   // количество букв в слове
+            {
+                count++;
+            }
 
+            for (int j = 0; j < count; j++)     // дублируем все гласные
+            {
+               
+                if ((words[i][j] == 'а') ||
+                    (words[i][j] == 'е') ||
+                    (words[i][j] == 'ё') ||
+                    (words[i][j] == 'и') ||
+                    (words[i][j] == 'о') ||
+                    (words[i][j] == 'у') ||
+                    (words[i][j] == 'ы') ||
+                    (words[i][j] == 'э') ||
+                    (words[i][j] == 'ю') ||
+                    (words[i][j] == 'я'))
+                {
+                    count++;
 
+                    for (int s = count; s > j; s--)
+                    {
+                        words[i][s] = words[i][s - 1];
+                    }
+                    j++;
+                }
+            }
+        }
+
+        int kek[100];                // буферный массив
+        for (int i = 0; i < 100; i++)
+            kek[i] = 0;
+
+        for (int i = 0; i < k; i++)         // сортировка (не уверена что правильная)
+        {
+            for (int j = i + 1; j < k-1; j++)
+            {
+                for (int h = 0; h < 100; h++)
+                {
+                    if (words[i][h] > words[j][h])
+                    {
+                        kek[i] = words[i][h];
+                        words[i][h] = words[j][h];
+                        words[j][h] = kek[i];
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < k; i++)
+        {
+            for (int j = 0; j < 100; j++)
+            {
+                std::cout << words[i][j];
+            }
+            std::cout << std::endl;
+        }
+    }
+
+    fin.close();
 }
+
+
