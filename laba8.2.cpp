@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <fstream>
 #define N 3000
@@ -38,7 +39,7 @@ int main()
         for (int j = 0; j < 100; j++)
         {
             if (words[i][j] >= 'А' && words[i][j] <= 'Я')     // меняем регистр на строчные буквы
-                words[i][j] -= 'а' - 'А';
+                words[i][j] += 'а' - 'А';
         }
     }
 
@@ -67,6 +68,7 @@ int main()
             if (words[i][j] == words[i][kol - 1 - j])   // сравнение первой и последней буквы
                 m++;     // счетчик +1
         }
+        std::cout << "m = " << m << '\n';
 
         if (m == (kol / 2))   // если счетчик = половине количества бувк
         {
@@ -78,10 +80,12 @@ int main()
 
     }
 
+    std::cout << (flag) << std::endl;
+
     int count = 0;
 
-    int stock[100];    //счетчик согласных
-    for (int i = 0; i < 100; i++)
+    int stock[N];    //счетчик согласных
+    for (int i = 0; i < N; i++)
     {
         stock[i] = 0;
     }
@@ -113,9 +117,9 @@ int main()
             }
         }
 
-        for (int i = 0; i < k; i++)
+        for (int i = 0; i < k-1; i++)
         {
-            for (int j = i + 1; j < k-1; j++)
+            for (int j = i + 1; j < k; j++)
             {
                 if (stock[i] < stock[j])
                 {
@@ -181,7 +185,7 @@ int main()
         for (int i = 0; i < 100; i++)
             kek[i] = 0;
 
-        for (int i = 0; i < k-1; i++)         // сортировка (не уверена что правильная)
+        for (int i = 0; i < k-1; i++)         // сортировка 
         {
             for (int j = i + 1; j < k; j++)
             {
@@ -209,3 +213,4 @@ int main()
 
     fin.close();
 }
+
