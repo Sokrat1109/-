@@ -1,5 +1,3 @@
-﻿
-
 #include <iostream>
 #include <math.h>
 #define N 1000
@@ -29,21 +27,25 @@
 }
 */
 
+int matrix[N][M];
+
 int main()
 {
     setlocale(LC_ALL, "Russian");
 
-    int matrix[N][M];
+
     int n, m;
 
-    std::cout << "введите количество строк и столбцов";
+    std::cout << "введите количество строк и столбцов ";
     std::cin >> n >> m;
 
-    std::cout << "введите элементы матрицы" << std::endl;
+    std::cout << "введите элементы матрицы " << std::endl;
 
     for (int i = 0; i < n; i++)
         for (int j = 0; j < m; j++)
             std::cin >> matrix[i][j];
+
+    std::cout << std::endl;
 
     // если в матрице есть 2 одинаковых столбца
     // если есть простое по модулю число
@@ -114,6 +116,8 @@ int main()
         }
     }
 
+    std::cout << "Ваша матрица : " << std::endl;
+
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
@@ -123,4 +127,6 @@ int main()
         std::cout << std::endl;
     }
 }
+
+
 
