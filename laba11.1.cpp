@@ -80,8 +80,8 @@ int main()
 
     write_matrix(matrixA, n, m);
 
-    delete[] matrixA[0];
-    delete[] matrixA;
-
+    for (int i = 0; i != n; ++i)
+        delete [] a[i];
+    delete [] a;
 }
 
